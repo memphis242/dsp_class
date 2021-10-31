@@ -1,0 +1,23 @@
+CHEBYSHEV FILTER
+
+fp: 3042 Hz				fs: 4000 Hz
+delta_p: 0.90				delta_s: 0.01
+ap: 0.92 dB				as: 40.00 dB
+epsilon: 0.484322
+
+Filter Order: 8
+
+Poles (Hz):
+-109.828560 +- 3034.136883
+-312.765276 +- 2572.217047
+-468.086315 +- 1718.700483
+-552.145455 +- 603.527350
+
+E12 series decade: 	10 12 15 17 22 27 33 39 47 56 68 82	(I did see in the lab 75 is also available)
+IN THE LAB: 		10 12 15 18 20 22 27 30 33 39 47 51 56 62 68 75 82 91
+
+Stages:
+Stage 1:		Q: 13.822	wn: 3036.12 Hz		R1: 37186.07 --> 39k ohms		R2: 738.96 --> 750 ohms	C1: 1000.00 nF		C2: 0.10 nF
+Stage 2:		Q: 4.142	wn: 2591.16 Hz		R1: 148024.02 -->  150kohms		R2: 254.87 --> 270 ohms	C1: 1000.00 nF		C2: 0.10 nF
+Stage 3:		Q: 1.903	wn: 1781.30 Hz		R1: 469400.72 --> 470kohms		R2: 170.07 --> 180 ohms	C1: 1000.00 nF		C2: 0.10 nF
+Stage 4:		Q: 0.741	wn: 817.99 Hz		R1: 2626530.24 --> 1 + 1 + 0.68 Mohms	R2: 144.13 --> 150 ohms	C1: 1000.00 nF		C2: 0.10 nF

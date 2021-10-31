@@ -1,0 +1,31 @@
+ERC report (11/07/20 14:05:18, Encoding UTF8 )
+
+***** Sheet /
+ErrType(3): Pin connected to other pins, but not driven by any pin
+    @(2.300 in, 5.350 in): Pin 1 (Power input) of component #PWR04 is not driven (Net 2).
+ErrType(3): Pin connected to other pins, but not driven by any pin
+    @(4.100 in, 4.350 in): Pin 1 (Power input) of component #PWR09 is not driven (Net 3).
+ErrType(8): Global label not connected to any other global label
+    @(6.250 in, 4.550 in): Global label DSP_DAC is not connected to any other global label.
+ErrType(2): Pin not connected (use a “no connection” flag to suppress this error)
+    @(6.550 in, 4.550 in): Pin 2 (Passive) of component R10 is unconnected.
+ErrType(8): Global label not connected to any other global label
+    @(4.400 in, 4.950 in): Global label DSP_ADC is not connected to any other global label.
+ErrType(3): Pin connected to other pins, but not driven by any pin
+    @(1.200 in, 2.050 in): Pin 11 (Power input) of component U1 is not driven (Net 14).
+ErrType(3): Pin connected to other pins, but not driven by any pin
+    @(7.900 in, 4.350 in): Pin 7 (Power input) of component U3 is not driven (Net 15).
+ErrType(3): Pin connected to other pins, but not driven by any pin
+    @(8.950 in, 4.200 in): Pin 2 (Passive) of component Q1 is not driven (Net 17).
+ErrType(3): Pin connected to other pins, but not driven by any pin
+    @(8.950 in, 5.100 in): Pin 2 (Passive) of component Q2 is not driven (Net 18).
+ErrType(8): Global label not connected to any other global label
+    @(9.750 in, 4.650 in): Global label SPK_PWR is not connected to any other global label.
+ErrType(2): Pin not connected (use a “no connection” flag to suppress this error)
+    @(1.700 in, 2.550 in): Pin 2 (Passive) of component R1 is unconnected.
+ErrType(8): Global label not connected to any other global label
+    @(1.600 in, 2.550 in): Global label Audio_In is not connected to any other global label.
+
+***** Sheet /Board Power/
+
+ ** ERC messages: 12  Errors 0  Warnings 12

@@ -1,0 +1,6 @@
+h = 0.4792131002 --> Q0.16 signed --> H = round(h*2^16) = 31405 = 0x7AAD --> h' = H/2^10 = 0.4792022705078125
+v = 2.835V (this should be interpreted as +1.185V about 1.65V midlevel); --> x is Q2.10 unsigned --> V = round(v*2^(10)) = 2903 = 0xB57 --> v' = V/(2^10) = 2.8349609375
+X is signed version of V as 16-bit --> X = (int16_t) ((int32_t)V - (1<<11))	--> With +1.185V, Q3.13 interpretation should be X = 9707 --> x' = 1.1849365234375V
+
+ACC (as Q3.29 since Q0.16 x Q3.13) = (int32_t)X*H = 304848335 --> acc = (float) ACC / (1<<29) = 0.56782427243888378143310546875 vs 0.567867523737
+Y (as Q3.13) = ACC >> 16;

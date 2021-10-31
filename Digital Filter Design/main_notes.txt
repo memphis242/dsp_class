@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdint.h>
+#include <inttypes.h>
+
+#define HSCALE ((uint64_t)1 << 32)
+#define ACCSCALE ((uint64_t)1 << 45)
+#define QIh 0
+#define QFh 32
+#define QIx 3
+#define QFx 13  //16-QIx
+#define L 4
+#define G 2 //ceil(log2(L))
+#define QIacc (QIh+QIx+G)
+#define QFacc (QFh+QFx)
+#define QIy QIacc
+#define QFy (16-QIy)
+#define ACCtoYshift (QFacc-QFy)
+
+//assume H's and adc are already defined
+int16_t X = (int16_t)adc * 270336/40950 - (135168/10);
+int64_t ACC = (int64_t)X*H1 + (int64_t)X*H2 + (int64_t)X*H3 + (int64_t)X*H4;
+int16_t Y = ACC >> ACCtoYshift;
+uint16_t dacout = (uint16_t) ((Y * 40950 / (33 * (1<<QFy))) + (675675/330));
+

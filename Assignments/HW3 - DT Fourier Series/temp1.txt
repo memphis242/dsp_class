@@ -1,0 +1,52 @@
+/**************************************************************************/
+//Name:  main.c																														//
+//Purpose:  Skeleton project with configuration for ADC, DAC, MCG and PIT	//
+//Author:  Ethan Hettwer																									//
+//Revision:  1.0 15Sept2014 EH Initial Revision														//
+//Target:  Freescale K22f																									//
+/**************************************************************************/
+
+#include "MK22F51212.h"                 				//Device header
+#include "MCG.h"																//Clock header
+#include "TimerInt.h"														//Timer Interrupt Header
+#include "DAC.h"																//DAC Header
+#include "PORT.h"
+#include "useful_func.h"
+
+#define PI 3.14159265
+
+uint16_t dac_out;
+uint8_t i = 0;
+
+void PIT0_IRQHandler(void){
+	//Place Interrupt Service Routine Here
+//	PIT->CHANNEL[0].TFLG	= PIT_TFLG_TIF_MASK;
+	
+//	GPIOB->PTOR		&= GPIO_PTOR_PTTO(1u << 0);
+	if(i==0) GPIOB->PSOR		|= GPIO_PSOR_PTSO(1u << 0);
+	else GPIOB->PCOR		|= GPIO_PCOR_PTCO(1u << 0);
+	
+//	//Output to DAC0
+//	DAC0->DAT[0].DATL = DAC_DATL_DATA0( dac_out & 0xFFu )	;
+//	DAC0->DAT[0].DATH = DAC_DATH_DATA1( dac_out >> 8u )	;
+	
+	NVIC_ClearPendingIRQ(PIT0_IRQn);							//Clears interrupt flag in NVIC Register
+	PIT->CHANNEL[0].TFLG	= PIT_TFLG_TIF_MASK;		//Clears interrupt flag in PIT Register		
+	
+	i = ~i;
+}
+
+
+int main(void){
+	MCG_Clock120_Init();
+	DAC_Init();
+	PORT_Init();
+	TimerInt_Init(4999u);
+	
+//	GPIOB->PSOR		|= GPIO_PSOR_PTSO(1u << 0);
+
+	while(1){
+		//Main loop goes here
+	}
+}
+

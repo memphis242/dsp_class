@@ -1,0 +1,4 @@
+(sym_lib_table
+  (lib (name Amplifier_Operational)(type Legacy)(uri ${KICAD_SYMBOL_DIR}/Amplifier_Operational.lib)(options "")(descr ""))
+  (lib (name DSP_Audio_Board)(type Legacy)(uri ${KIPRJMOD}/DSP_Audio_Board.lib)(options "")(descr ""))
+)

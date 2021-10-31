@@ -1,0 +1,1 @@
+56th Order 14.8us --> 14.43us --> No = 1862 --> 7.75ns per OP --> 1 clock per OP

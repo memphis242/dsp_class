@@ -1,0 +1,145 @@
+/**************************************************************************/
+//Name:  main.c																														//
+//Purpose:  Skeleton project with configuration for ADC, DAC, MCG and PIT	//
+//Author:  Ethan Hettwer																									//
+//Revision:  1.0 15Sept2014 EH Initial Revision														//
+//Target:  Freescale K22f																									//
+/**************************************************************************/
+
+#include "MK22F51212.h"                 				//Device header
+#include "MCG.h"																//Clock header
+#include "TimerInt.h"														//Timer Interrupt Header
+#include "ADC.h"																//ADC Header
+#include "DAC.h"																//DAC Header
+#include "PORT.h"
+#include "useful_func.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+#define PI 3.14159265
+
+uint16_t dac_out;
+uint8_t i = 0;
+uint8_t K = 10;
+float fy = 1e3;
+float Y0 = 0.99;
+float* yhat;
+uint8_t size_yhat;
+uint16_t* dac_out_arr;
+
+float Ck[10] = {0.6513, 0.8942, 0.4322, 0.2387, 0.1312, 0.2314, 0.2226, 0.1337, 0.0658, 0.1079};
+float Ok[10] = {-1.9174, 2.6620, -0.6346, 2.8995, 1.3452, -1.6801, 1.6153, -1.5630, 2.7450, 0.4671};
+
+
+void PIT0_IRQHandler(void){	//This function is called when the timer interrupt expires
+	//Place Interrupt Service Routine Here
+//	PIT->CHANNEL[0].TFLG	= PIT_TFLG_TIF_MASK;
+	
+	
+	if(i==(11)) i = 0;
+	else{
+//		dac_out = dac_out_arr[i];
+		dac_out = (uint16_t) map(yhat[i], -1, 1, 0, 4095);
+		i++;
+	}
+//	
+//	if(i==(size_yhat-1)) i = 0;
+//	else i++;
+	
+//	dac_out = 0xFFF;
+	
+	//Output to DAC0
+	DAC0->DAT[0].DATL = DAC_DATL_DATA0( dac_out & 0xFFu )	;
+	DAC0->DAT[0].DATH = DAC_DATH_DATA1( dac_out >> 8 )	;
+	
+	NVIC_ClearPendingIRQ(PIT0_IRQn);							//Clears interrupt flag in NVIC Register
+	PIT->CHANNEL[0].TFLG	= PIT_TFLG_TIF_MASK;		//Clears interrupt flag in PIT Register		
+	
+}
+
+void PIT1_IRQHandler(void){
+	//Place Interrupt Service Routine Here
+//	PIT->CHANNEL[0].TFLG	= PIT_TFLG_TIF_MASK;
+	
+	
+	dac_out = (uint16_t) map(yhat[i], -1, 1, 0, 4096);
+	
+	if(i==11) i = 0;
+	else i++;
+	
+	
+	
+	//Output to DAC0
+	DAC0->DAT[0].DATL = DAC_DATL_DATA0( dac_out & 0xFFu )	;
+	DAC0->DAT[0].DATH = DAC_DATH_DATA1( dac_out >> 8u )	;
+	
+	NVIC_ClearPendingIRQ(PIT1_IRQn);							//Clears interrupt flag in NVIC Register
+	PIT->CHANNEL[1].TFLG	= PIT_TFLG_TIF_MASK;		//Clears interrupt flag in PIT Register		
+}
+
+void PORTB_IRQHandler(void){
+		
+	
+	NVIC_ClearPendingIRQ(PORTB_IRQn);							//Clears interrupt flag in NVIC Register
+	PORTB->PCR[0] |= PORT_PCR_ISF(1u);
+}
+
+void PORTC_IRQHandler(void){
+	
+	
+	NVIC_ClearPendingIRQ(PORTB_IRQn);							//Clears interrupt flag in NVIC Register
+	PORTC->PCR[1] |= PORT_PCR_ISF(1u);
+}
+
+
+
+
+
+int main(void){
+	MCG_Clock120_Init();
+	ADC_Init();
+	ADC_Calibrate();
+	DAC_Init();
+//	DAC_Timer_Init( (1.0/12)*1.0e9 );
+	
+//	PORT_Init();
+	
+	//I choose to have at most 12 values for the highest frequency component's cycle, which equates to 6x Nyquist, which for a ZOH filter I think will make for good buffer to have a LPF post-process
+	
+	float Fn = 2*fy;
+	float Fs = 6*Fn;
+	float T = 1/Fs;
+	uint32_t ldval = (uint32_t) (60e6/Fs) - 1u;
+//	uint32_t ldval = 4999u;
+	TimerInt_Init(ldval);
+	
+	yhat = (float*)malloc(12 * sizeof(float));
+	zeros(yhat, size_yhat);
+	for(int i=0; i<12; i++){
+		yhat[i] = cos(2*PI*fy*i*T);
+	}
+	dac_out_arr = (uint16_t*)malloc(12 * sizeof(uint16_t));
+	map_vec_to_dac(yhat, dac_out_arr, size_yhat);
+
+//	size_yhat = 12*K;
+//	yhat = (float*)malloc(size_yhat * sizeof(float));
+//	zeros(yhat, size_yhat);
+//	add_const_vec(Y0, yhat, size_yhat);
+
+//	float harmonics[K][size_yhat];
+//	zeros2d(K, size_yhat, harmonics);
+//	generate_harmonics(K, size_yhat, harmonics, fy, K, Ck, Ok);
+
+//	for(int k=0; k<K; k++){
+//        add_vecs(yhat, harmonics[k], yhat, size_yhat);
+//	}
+//	dac_out_arr = (uint16_t*)malloc(size_yhat * sizeof(uint16_t));
+//	map_vec_to_dac(yhat, dac_out_arr, size_yhat);
+	
+	
+	while(1){
+		//Main loop goes here
+	}
+}
+	

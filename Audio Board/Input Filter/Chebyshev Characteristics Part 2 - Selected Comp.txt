@@ -1,0 +1,21 @@
+CHEBYSHEV FILTER
+
+fp: 6084 Hz				fs: 8000 Hz
+delta_p: 0.90			delta_s: 0.01
+ap: 0.92 dB				as: 40.00 dB
+epsilon: 0.484322
+
+Filter Order: 8
+
+Poles (Hz):
+-219.657119 +- 6068.273767
+-625.530552 +- 5144.434095
+-936.172630 +- 3437.400966
+-1104.290910 +- 1207.054701
+
+
+Stages:
+Stage 1:		Q: 13.822	wn: 6072.25 Hz		R1: 18593.03 --> 18k ohms	R2: 369.48 --> 390 ohms	C1: 1000.00 nF		C2: 0.10 nF
+Stage 2:		Q: 4.142	wn: 5182.32 Hz		R1: 74012.01 --> 75k ohms	R2: 127.44 --> 120 ohms	C1: 1000.00 nF		C2: 0.10 nF
+Stage 3:		Q: 1.903	wn: 3562.60 Hz		R1: 234700.36 --> 220k ohms	R2: 85.03 --> 82 ohms	C1: 1000.00 nF		C2: 0.10 nF
+Stage 4:		Q: 0.741	wn: 1635.98 Hz		R1: 1313265.12 --> 1M + 300k ohms	R2: 72.07 --> 75 ohms		C1: 1000.00 nF		C2: 0.10 nF

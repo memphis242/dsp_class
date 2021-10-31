@@ -1,0 +1,17 @@
+CHEBYSHEV FILTER
+
+fp: 130 Hz				fs: 500 Hz
+delta_p: 0.99			delta_s: 0.01
+ap: 0.09 dB				as: 40.00 dB
+epsilon: 0.142492
+
+Filter Order: 4
+
+Poles (Hz):
+-35.253739 +- 146.875909
+-85.110056 +- 60.837993
+
+
+Stages:
+Stage 1:		Q: 2.142	wn: 151.05 Hz		R1: 4916191.70 ohms		R2: 2258.31 ohms		C1: 1000.00 nF		C2: 0.10 nF
+Stage 2:		Q: 0.615	wn: 104.62 Hz		R1: 24751385.75 ohms		R2: 935.03 ohms		C1: 1000.00 nF		C2: 0.10 nF

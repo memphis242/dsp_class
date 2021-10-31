@@ -1,0 +1,16 @@
+2dB Passband Edges:		fp1 = 1000Hz	fp2 = 4000Hz
+20dB Stopband Edges:	fs1 = 968.7Hz	fs2 = 4129.3Hz
+
+2dB Max Attenuation corresponds to delta_p of 0.794328.
+20dB Min Attenuation corresponds to delta_s of 0.100000.
+
+Frequency (Hz)			Magnitude
+0.000000			0.100000
+500.000000			0.019328
+1000.000000			0.794328
+1000.000000			0.794328
+2500.000000			1.000000
+4000.000000			0.794328
+4000.000000			0.794328
+4500.000000			0.019328
+5000.000000			0.100000

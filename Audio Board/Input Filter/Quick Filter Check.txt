@@ -1,0 +1,17 @@
+Quick Filter Check: Stages: 1
+
+     1 Hz		-->		Magnitude: 1.000	  0 dB
+   100 Hz		-->		Magnitude: 1.001	  0 dB
+  1000 Hz		-->		Magnitude: 1.121	  1 dB
+  3000 Hz		-->		Magnitude: 13.280	 22 dB
+  5000 Hz		-->		Magnitude: 0.583	 -5 dB
+ 10000 Hz		-->		Magnitude: 0.102	-20 dB
+ 50000 Hz		-->		Magnitude: 0.004	-49 dB
+
+Peak of Original Design:	13.62	 23 dB
+Peak of PSIM simulation with standardized values:	11.35	 21 dB
+
+From Original Design
+Poles:	-110.0	+-3034.0j Hz
+Q: 13.822000
+Damping Factor (zeta): 0.036174

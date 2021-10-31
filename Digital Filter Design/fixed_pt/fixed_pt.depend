@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1606690394 source:c:\users\almos\onedrive\documents\c\fixed_pt\main.c
+	<stdio.h>
+	<stdlib.h>
+	<stdint.h>
+	<inttypes.h>
+
+1606668919 source:c:\users\almos\onedrive\documents\c\fixed_pt\fir.c
+
+1606679562 source:c:\users\almos\onedrive\documents\c\fixed_pt\test1.c
+
+1606668855 source:c:\users\almos\onedrive\documents\c\fixed_pt\test2.c
+
+1606685162 source:c:\users\almos\onedrive\documents\c\fixed_pt\test3.c
+

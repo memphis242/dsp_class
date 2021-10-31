@@ -1,0 +1,1 @@
+Refer to ./Digital Filter Design/FIR to see the MATLAB code I wrote to give me the filter coefficients needed to meet specifications.
